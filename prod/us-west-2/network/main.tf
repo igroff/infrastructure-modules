@@ -17,7 +17,7 @@ resource "aws_vpc" "primary" {
 }
 
 resource "aws_subnet" "primary_subnets" {
-  for_each = local.primary_subnets
+  for_each = var.primary_subnets[var.aws_region]
 
   vpc_id = aws_vpc.primary.id
   cidr_block = each.value["cidr"]
