@@ -44,7 +44,7 @@ network_configs = {
       }
       primary-4 = {
         cidr : "192.168.19.0/24"
-        az : "us-east-2d"
+        az : "us-east-2c"
       }
     }
   }
