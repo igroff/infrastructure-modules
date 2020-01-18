@@ -4,4 +4,4 @@ variable "aws_profile" {
     type = string
 }
 
-variable "primary_subnets" {}
+variable "network_configs" {}

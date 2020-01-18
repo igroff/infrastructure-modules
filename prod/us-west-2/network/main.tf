@@ -8,8 +8,12 @@ provider "aws" {
   profile = var.aws_profile
 }
 
+locals {
+  network_config = var.network_configs[var.aws_region]
+}
+
 resource "aws_vpc" "primary" {
-  cidr_block            = "192.168.12.0/22"
+  cidr_block            = local.network_config.vpc.cidr_block
   enable_dns_hostnames  = true
   tags = {
     Name = "primary"
@@ -17,7 +21,7 @@ resource "aws_vpc" "primary" {
 }
 
 resource "aws_subnet" "primary_subnets" {
-  for_each = var.primary_subnets[var.aws_region]
+  for_each = local.network_config.subnets
 
   vpc_id = aws_vpc.primary.id
   cidr_block = each.value["cidr"]
