@@ -5,7 +5,7 @@ remote_state {
         bucket  = "terraform-state.intimidatingbits.com"
         key     = "${path_relative_to_include()}/terraform.tfstate"
         region  = "us-east-2"
-        profile = "ilegitroot"
+        profile = "tf-state-user"
 
         dynamodb_table = "terraform-state-locks"
         encrypt        = true
