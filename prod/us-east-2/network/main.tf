@@ -4,7 +4,7 @@ terraform {
 }
 
 provider "aws" {
-  region = var.aws_region
+  region  = var.aws_region
   profile = var.aws_profile
 }
 
@@ -13,8 +13,8 @@ locals {
 }
 
 resource "aws_vpc" "primary" {
-  cidr_block            = local.network_config.vpc.cidr_block
-  enable_dns_hostnames  = true
+  cidr_block           = local.network_config.vpc.cidr_block
+  enable_dns_hostnames = true
   tags = {
     Name = "primary"
   }
@@ -23,8 +23,8 @@ resource "aws_vpc" "primary" {
 resource "aws_subnet" "primary_subnets" {
   for_each = local.network_config.subnets
 
-  vpc_id = aws_vpc.primary.id
-  cidr_block = each.value["cidr"]
+  vpc_id            = aws_vpc.primary.id
+  cidr_block        = each.value["cidr"]
   availability_zone = each.value["az"]
 
   tags = {
